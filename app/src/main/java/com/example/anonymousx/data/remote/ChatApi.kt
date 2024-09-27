@@ -7,7 +7,7 @@ import retrofit2.http.POST
 
 interface ChatApi {
 
-    @POST
-    suspend fun addUsers( @Body users: Users):Response<Int>
+    @POST("addUser")
+    suspend fun addUsers( @Body users: Users):Response<Users>
 
 }

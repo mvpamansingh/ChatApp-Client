@@ -1,6 +1,8 @@
 package com.example.anonymousx.data.di
 
 import com.example.anonymousx.data.remote.ChatApi
+import com.example.anonymousx.data.repository.ChatsRepositoryImpl
+import com.example.anonymousx.domain.repository.ChatsRepository
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,9 +15,19 @@ fun provideChatApi():ChatApi{
         .baseUrl("http://192.168.1.5:3000")
         .addConverterFactory(GsonConverterFactory.create()).build().create(ChatApi::class.java)
 }
+
+
+
+fun provideChatsRepository(chatApi: ChatApi):ChatsRepository{
+    return ChatsRepositoryImpl(chatApi)
+}
 val dataModule = module {
 
     single{
         provideChatApi()
+    }
+
+    single{
+        provideChatsRepository(get())
     }
 }
