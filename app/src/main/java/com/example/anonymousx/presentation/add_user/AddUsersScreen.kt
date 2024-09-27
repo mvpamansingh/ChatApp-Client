@@ -1,5 +1,6 @@
 package com.example.anonymousx.presentation.add_user
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,17 +10,21 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
 fun AddUsersScreen(
     modifier: Modifier= Modifier,
-
+    state:AddUserState,
+    event:(AddUserEvent)->Unit
+    , navController: NavController
 )
 {
 
@@ -45,12 +50,21 @@ fun AddUsersScreen(
         
         )
         
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            event(AddUserEvent.AddUser(textState.value))
+        }) {
             Text(text = "Add User")
         }
         
         Button(onClick = { /*TODO*/ }) {
             Text(text = "Let's go")
+        }
+        LaunchedEffect(key1 = state) {
+            if(state.addedUser)
+            {
+                Log.d("AddUser", "User Added")
+                //navController.navigate()
+            }
         }
 
     }
