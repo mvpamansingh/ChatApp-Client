@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.anonymousx.presentation.navigation.UserScreen
 
 
 @Composable
@@ -56,14 +57,17 @@ fun AddUsersScreen(
             Text(text = "Add User")
         }
         
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+
+            navController.navigate(UserScreen)
+        }) {
             Text(text = "Let's go")
         }
         LaunchedEffect(key1 = state) {
             if(state.addedUser)
             {
                 Log.d("AddUser", "User Added")
-                //navController.navigate()
+                navController.navigate(UserScreen)
             }
         }
 
