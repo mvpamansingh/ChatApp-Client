@@ -7,4 +7,6 @@ interface ChatsRepository {
 
 
     suspend fun addUser(users: Users):Flow<Int>
+
+    suspend fun fetchUsers():Flow<List<Users>>
 }

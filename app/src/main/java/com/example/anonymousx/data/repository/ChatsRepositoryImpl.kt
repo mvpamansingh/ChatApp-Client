@@ -13,4 +13,9 @@ class ChatsRepositoryImpl(
 
         emit( chatApi.addUsers(users).code())
     }
+
+    override suspend fun fetchUsers(): Flow<List<Users>> = flow{
+
+        emit(chatApi.fetchUsers().body()!!)
+    }
 }
