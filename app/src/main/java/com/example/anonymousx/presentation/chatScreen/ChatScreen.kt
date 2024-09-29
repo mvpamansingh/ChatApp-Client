@@ -1,5 +1,6 @@
 package com.example.anonymousx.presentation.chatScreen
 
+import android.os.Message
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,7 +22,8 @@ import com.example.anonymousx.presentation.usersScreen.components.UserAppBar
 fun ChatScreen(
     navController:NavController,
     senderId:String,
-    receiverId:String
+    receiverId:String,
+    events: (ChatsEvents)->Unit //<<
 )
 {
 
@@ -56,7 +58,12 @@ fun ChatScreen(
 
         MessageInputField()
         {message->
-
+                val messagee = Message(
+                    message = message,
+                    senderId = senderId,
+                    receiverId = receiverId
+                )
+            events(ChatsEvents.SendMessage(messagee))
         }
     }
 }

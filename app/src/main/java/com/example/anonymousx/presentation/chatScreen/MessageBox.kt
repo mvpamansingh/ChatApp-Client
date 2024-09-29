@@ -84,11 +84,13 @@ val modifier= if(message.receiverId==message.senderId)
                     Spacer(modifier = Modifier.height(8.dp))
 
 
-                    Text(text = message.timestamp,
-                        style = androidx.compose.ui.text.TextStyle(
+                    message.timestamp?.let {
+                        Text(text = it,
+                            style = androidx.compose.ui.text.TextStyle(
                                 color = Color.White,
-                            fontSize = 12.sp
-                        ))
+                                fontSize = 12.sp
+                            ))
+                    }
                 }
 
             }

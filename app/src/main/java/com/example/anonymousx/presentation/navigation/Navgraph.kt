@@ -7,8 +7,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.anonymousx.presentation.add_user.AddUserViewModel
 import com.example.anonymousx.presentation.add_user.AddUsersScreen
+import com.example.anonymousx.presentation.chatScreen.ChatScreen
+import com.example.anonymousx.presentation.chatScreen.ChatViewModel
 import com.example.anonymousx.presentation.usersScreen.UserViewModel
 import com.example.anonymousx.presentation.usersScreen.UsersScreen
 import org.koin.androidx.compose.koinViewModel
@@ -43,6 +46,27 @@ fun SetUpnavGraph()
             UsersScreen(
                 state= state,
                 event = viewModel::onEvent
+            )
+            {receiverId->
+                    navController.navigate(ChatScreen(
+                        receiverId = receiverId,
+                        senderId = "66f6251740d285204dee80f7"
+                    ))
+            }
+        }
+
+        composable<ChatScreen> {
+            val args = it.toRoute<ChatScreen>()
+
+            val viewModel:ChatViewModel = koinViewModel()
+            //val state by viewModel.state.collectAsStateWithLifecycle()
+            
+            
+            ChatScreen(
+                navController = navController,
+                senderId = args.senderId,
+                receiverId = args.receiverId,
+                events = viewModel::onEvent
             )
         }
 

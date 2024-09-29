@@ -20,7 +20,8 @@ import com.example.anonymousx.presentation.usersScreen.components.UserItem
 fun UsersScreen(
     modifier: Modifier= Modifier,
     state: UsersState,
-    event: (UserEvent)->Unit
+    event: (UserEvent)->Unit,
+    onClick :(String)->Unit
 )
 {
     LaunchedEffect(key1 = Unit) {
@@ -44,7 +45,9 @@ fun UsersScreen(
 
                 UserItem(
                     user,
-                    onClick =  {}
+                    onClick =  {
+                        onClick(user._id.toString())
+                    }
                 )
             }
         }

@@ -34,7 +34,7 @@ class AddUserViewModel: ViewModel() , KoinComponent{
 
     private suspend fun addUser(username: String) {
 
-        val users = Users(username)
+        val users = Users(username = username)
         chatRepository.addUser(users).collect{status->
 
             if(status==201){
