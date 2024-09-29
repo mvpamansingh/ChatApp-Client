@@ -31,7 +31,7 @@ fun UsersScreen(
 
     Column(modifier =Modifier.fillMaxSize()) {
 
-        UserAppBar()
+        UserAppBar("Users")
         Spacer(modifier = Modifier.height(10.dp))
         LazyColumn(
             modifier= Modifier
@@ -52,6 +52,6 @@ fun UsersScreen(
 }
 
 val listt = listOf(
-    Users("Aman"),Users("Shiv ji"),
+    Users(username = "Aman"),Users(username = "Shiv"),
     //"Aman", "Shiv"
 )

@@ -19,7 +19,7 @@ import com.example.anonymousx.R
 
 
 @Composable
-fun UserAppBar()
+fun UserAppBar(input:String)
 {
 
 
@@ -27,7 +27,7 @@ fun UserAppBar()
 
 
     TopAppBar(title = {
-        Text(text = "Users",
+        Text(text = input,
             style= TextStyle(
                 color = Color.White,
                 fontSize = 25.sp
