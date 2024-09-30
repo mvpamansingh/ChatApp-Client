@@ -1,5 +1,7 @@
 package com.example.anonymousx.presentation.chatScreen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.collection.floatObjectMapOf
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,6 +22,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 
 
@@ -29,7 +34,7 @@ fun MessageBox(
 
 )
 {
-val modifier= if(message.receiverId==message.senderId)
+val modifier= if("66f6251740d285204dee80f7"==message.senderId)
 {
     //
     //
@@ -62,7 +67,7 @@ val modifier= if(message.receiverId==message.senderId)
         )
     }
 
-    val boxArrangement = if(message.receiverId ==message.senderId) Alignment.CenterEnd else Alignment.CenterStart
+    val boxArrangement = if("66f6251740d285204dee80f7" ==message.senderId) Alignment.CenterEnd else Alignment.CenterStart
 
     Box(
         modifier= Modifier
@@ -83,14 +88,19 @@ val modifier= if(message.receiverId==message.senderId)
                         ))
                     Spacer(modifier = Modifier.height(8.dp))
 
-
+//
                     message.timestamp?.let {
-                        Text(text = it,
+                        Text(text = formatTimestamp(it),
                             style = androidx.compose.ui.text.TextStyle(
                                 color = Color.White,
                                 fontSize = 12.sp
                             ))
                     }
+//                    Text(text =formatTimestamp(message.timestamp!!),
+//                        style= androidx.compose.ui.text.TextStyle(
+//                            color = Color.White,
+//                            fontSize = 12.sp
+//                        ))
                 }
 
             }
@@ -103,4 +113,19 @@ val modifier= if(message.receiverId==message.senderId)
 
 
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun formatTimestamp(timestamp:String):String{
+
+    val formatter = DateTimeFormatter.ISO_DATE_TIME
+    val zonedDateTime= ZonedDateTime.parse(timestamp,formatter)
+
+    val zoneId = ZoneId.of("Asia/Kolkata")
+    val istDateTime= zonedDateTime.withZoneSameInstant(zoneId)
+
+    val hours= istDateTime.hour.toString().padStart(2,'0')
+    val minutes = istDateTime.minute.toString().padStart(2,'0')
+
+    return "$hours:$minutes"
 }

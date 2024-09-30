@@ -59,16 +59,28 @@ fun SetUpnavGraph()
             val args = it.toRoute<ChatScreen>()
 
             val viewModel:ChatViewModel = koinViewModel()
-            //val state by viewModel.state.collectAsStateWithLifecycle()
+            val state by viewModel.state.collectAsStateWithLifecycle()
             
-            
+            LaunchedEffect(key1 = Unit) {
+                viewModel.getMessages(createChatRoomId(args.receiverId,args.senderId))
+            }
             ChatScreen(
                 navController = navController,
                 senderId = args.senderId,
                 receiverId = args.receiverId,
-                events = viewModel::onEvent
+                events = viewModel::onEvent,
+
+
+
+                states = state
             )
         }
 
     }
+}
+
+fun createChatRoomId(id1:String, id2:String):String
+{
+    val ids = listOf(id1,id2).sorted()
+    return ids.joinToString(separator = "_")
 }

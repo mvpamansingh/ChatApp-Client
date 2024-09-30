@@ -24,6 +24,7 @@ fun ChatScreen(
     senderId:String,
     receiverId:String,
     events: (ChatsEvents)->Unit //<<
+    , states: ChatStates
 )
 {
 
@@ -45,7 +46,7 @@ fun ChatScreen(
             reverseLayout = true
         ) {
 
-            items(messageList)
+            items(states.messageist)
             {message->
 
                 MessageBox(
