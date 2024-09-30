@@ -93,4 +93,10 @@ dependencies {
 
     // Koin core features
     implementation("io.insert-koin:koin-androidx-compose:3.2.0")
+
+
+
+
+
+    implementation ("io.socket:socket.io-client:2.0.0")
 }

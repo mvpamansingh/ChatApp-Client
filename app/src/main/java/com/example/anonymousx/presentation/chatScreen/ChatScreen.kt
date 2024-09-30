@@ -43,7 +43,7 @@ fun ChatScreen(
 
         Spacer(modifier = Modifier.height(10.dp))
         LazyColumn(modifier= Modifier.fillMaxWidth().weight(1f),
-            reverseLayout = true
+            reverseLayout = false
         ) {
 
             items(states.messageist)
