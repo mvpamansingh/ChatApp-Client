@@ -16,4 +16,5 @@ interface ChatsRepository {
 
 
     suspend fun sendMessage(message: Message)
+    suspend fun getMessages(chatRoomId:String):Flow<List<Message>>
 }

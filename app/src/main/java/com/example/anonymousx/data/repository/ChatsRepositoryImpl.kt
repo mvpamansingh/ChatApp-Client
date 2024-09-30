@@ -1,5 +1,6 @@
 package com.example.anonymousx.data.repository
 
+import android.util.Log
 import com.example.anonymousx.data.remote.ChatApi
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.domain.repository.ChatsRepository
@@ -23,5 +24,18 @@ class ChatsRepositoryImpl(
     override suspend fun sendMessage(message: Message) {
 
         chatApi.sendMessage(message)
+    }
+
+    override suspend fun getMessages(chatRoomId: String): Flow<List<Message>> = flow {
+
+
+        try{
+            emit(chatApi.getMessages(chatRoomId).body()!!)
+
+        }
+        catch (e:Exception)
+        {
+            Log.d("Exception", e.message.toString())
+        }
     }
 }
