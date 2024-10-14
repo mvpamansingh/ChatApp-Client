@@ -14,6 +14,7 @@ import com.example.anonymousx.presentation.chatScreen.ChatScreen
 import com.example.anonymousx.presentation.chatScreen.ChatViewModel
 import com.example.anonymousx.presentation.groupChat.GroupsScreen
 import com.example.anonymousx.presentation.groupChat.GroupsScreenViewModel
+import com.example.anonymousx.presentation.main.MainScreen
 import com.example.anonymousx.presentation.usersScreen.UserViewModel
 import com.example.anonymousx.presentation.usersScreen.UsersScreen
 import org.koin.androidx.compose.koinViewModel
@@ -35,35 +36,39 @@ fun SetUpnavGraph()
             AddUsersScreen(state= state,
                 event = viewModel::onEvent, navController = navController )
 
-//            val groupBiewmodel:GroupsScreenViewModel= koinViewModel()
-//            val state by groupBiewmodel.state.collectAsStateWithLifecycle()
+
+        }
+
+//        composable<UserScreen> {
 //
-//            GroupsScreen(state = state, event = groupBiewmodel::onEvent){
 //
+//
+//
+//            val viewModel:UserViewModel = koinViewModel()
+//            val state by viewModel.state.collectAsStateWithLifecycle()
+//
+//
+//            UsersScreen(
+//                state= state,
+//                event = viewModel::onEvent
+//            )
+//            {receiverId->
+//                    navController.navigate(ChatScreen(
+//                        receiverId = receiverId,
+//                        senderId = "66f6251740d285204dee80f7"
+//                    ))
 //            }
-        }
+//        }
 
-        composable<UserScreen> {
-
-
-
-
-            val viewModel:UserViewModel = koinViewModel()
-            val state by viewModel.state.collectAsStateWithLifecycle()
-
-
-            UsersScreen(
-                state= state,
-                event = viewModel::onEvent
+        composable<MainScreen> {
+            val userViewModel: UserViewModel = koinViewModel()
+            val groupsViewModel: GroupsScreenViewModel = koinViewModel()
+            MainScreen(
+                mainNavController = navController,
+                userViewModel = userViewModel,
+                groupsViewModel = groupsViewModel
             )
-            {receiverId->
-                    navController.navigate(ChatScreen(
-                        receiverId = receiverId,
-                        senderId = "66f6251740d285204dee80f7"
-                    ))
-            }
         }
-
         composable<ChatScreen> {
             val args = it.toRoute<ChatScreen>()
 

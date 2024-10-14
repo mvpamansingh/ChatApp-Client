@@ -7,7 +7,16 @@ import kotlinx.serialization.Serializable
 data object AddUserScreen
 
 @Serializable
-data object UserScreen
+data object MainScreen
+
+@Serializable
+data object UsersTab
+
+@Serializable
+data object GroupsTab
+
+@Serializable
+data object SettingsTab
 
 // we use data object when the screen is taking data from another screens
 // and if not we can use object

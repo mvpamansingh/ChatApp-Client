@@ -17,7 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.anonymousx.presentation.navigation.UserScreen
+import com.example.anonymousx.presentation.navigation.MainScreen
 
 
 @Composable
@@ -59,7 +59,7 @@ fun AddUsersScreen(
         
         Button(onClick = {
 
-            navController.navigate(UserScreen)
+            navController.navigate(MainScreen)
         }) {
             Text(text = "Let's go")
         }
@@ -67,7 +67,7 @@ fun AddUsersScreen(
             if(state.addedUser)
             {
                 Log.d("AddUser", "User Added")
-                navController.navigate(UserScreen)
+                navController.navigate(MainScreen)
             }
         }
 
