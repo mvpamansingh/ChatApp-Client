@@ -2,6 +2,7 @@ package com.example.anonymousx.data.repository
 
 import android.util.Log
 import com.example.anonymousx.data.remote.ChatApi
+import com.example.anonymousx.domain.model.IndividualGroup
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.domain.repository.ChatsRepository
 import com.example.anonymousx.presentation.chatScreen.Message
@@ -37,5 +38,9 @@ class ChatsRepositoryImpl(
         {
             Log.d("Exception", e.message.toString())
         }
+    }
+
+    override suspend fun getGroups(): Flow<List<IndividualGroup>> = flow {
+        emit(chatApi.getGrouups().body()!!)
     }
 }

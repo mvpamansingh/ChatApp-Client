@@ -12,6 +12,8 @@ import com.example.anonymousx.presentation.add_user.AddUserViewModel
 import com.example.anonymousx.presentation.add_user.AddUsersScreen
 import com.example.anonymousx.presentation.chatScreen.ChatScreen
 import com.example.anonymousx.presentation.chatScreen.ChatViewModel
+import com.example.anonymousx.presentation.groupChat.GroupsScreen
+import com.example.anonymousx.presentation.groupChat.GroupsScreenViewModel
 import com.example.anonymousx.presentation.usersScreen.UserViewModel
 import com.example.anonymousx.presentation.usersScreen.UsersScreen
 import org.koin.androidx.compose.koinViewModel
@@ -32,6 +34,13 @@ fun SetUpnavGraph()
             val state by viewModel.state.collectAsStateWithLifecycle()
             AddUsersScreen(state= state,
                 event = viewModel::onEvent, navController = navController )
+
+//            val groupBiewmodel:GroupsScreenViewModel= koinViewModel()
+//            val state by groupBiewmodel.state.collectAsStateWithLifecycle()
+//
+//            GroupsScreen(state = state, event = groupBiewmodel::onEvent){
+//
+//            }
         }
 
         composable<UserScreen> {
