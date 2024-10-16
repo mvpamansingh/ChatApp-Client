@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.anonymousx.data.remote.ChatApi
 import com.example.anonymousx.domain.model.IndividualGroup
 import com.example.anonymousx.domain.model.ReceivedGroupMessage
+import com.example.anonymousx.domain.model.SentGroupMessage
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.domain.repository.ChatsRepository
 import com.example.anonymousx.presentation.chatScreen.Message
@@ -53,5 +54,10 @@ class ChatsRepositoryImpl(
         catch(e : Exception){
             Log.d("Exception", e.message.toString())
         }
+    }
+
+    override suspend fun sendGroupMessage(sentGroupMessage: SentGroupMessage) {
+
+        chatApi.sendGroupMessage(sentGroupMessage)
     }
 }
