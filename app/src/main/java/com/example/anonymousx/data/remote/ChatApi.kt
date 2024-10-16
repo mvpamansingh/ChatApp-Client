@@ -1,6 +1,7 @@
 package com.example.anonymousx.data.remote
 
 import com.example.anonymousx.domain.model.IndividualGroup
+import com.example.anonymousx.domain.model.ReceivedGroupMessage
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.presentation.chatScreen.Message
 import retrofit2.Response
@@ -34,4 +35,9 @@ interface ChatApi {
 
     @GET("get-groups")
     suspend fun getGrouups():Response<List<IndividualGroup>>
+
+    @GET("fetch-group-messages/{groupId}")
+    suspend fun getGroupMessage(
+        @Path("groupId") groupId:String
+    ):Response<List<ReceivedGroupMessage>>
 }
