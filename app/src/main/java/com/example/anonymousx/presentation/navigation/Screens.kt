@@ -27,3 +27,10 @@ data class ChatScreen(
     val senderId:String,
     val receiverId:String
 )
+
+
+@Serializable
+data class GroupConversationScreen(
+    val groupId: String,
+    val senderId: String
+)

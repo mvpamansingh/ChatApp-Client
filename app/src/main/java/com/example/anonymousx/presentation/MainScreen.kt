@@ -21,6 +21,7 @@ import com.example.anonymousx.R
 import com.example.anonymousx.presentation.groupChat.GroupsScreen
 import com.example.anonymousx.presentation.groupChat.GroupsScreenViewModel
 import com.example.anonymousx.presentation.navigation.ChatScreen
+import com.example.anonymousx.presentation.navigation.GroupConversationScreen
 import com.example.anonymousx.presentation.navigation.GroupsTab
 import com.example.anonymousx.presentation.navigation.SettingsTab
 import com.example.anonymousx.presentation.navigation.UsersTab
@@ -62,8 +63,13 @@ fun MainScreen(
                 GroupsScreen(
                     state = state,
                     event = groupsViewModel::onEvent
-                ) {
-                    // Handle group click if needed
+                ) { groupId ->
+                    mainNavController.navigate(
+                        GroupConversationScreen(
+                            groupId = groupId,
+                            senderId = "66f6251740d285204dee80f7" // Hardcoded senderId
+                        )
+                    )
                 }
             }
             composable<SettingsTab> {

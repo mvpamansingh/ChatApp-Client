@@ -14,6 +14,8 @@ import com.example.anonymousx.presentation.chatScreen.ChatScreen
 import com.example.anonymousx.presentation.chatScreen.ChatViewModel
 import com.example.anonymousx.presentation.groupChat.GroupsScreen
 import com.example.anonymousx.presentation.groupChat.GroupsScreenViewModel
+import com.example.anonymousx.presentation.groupConversation.GroupConversationScreenn
+import com.example.anonymousx.presentation.groupConversation.GroupConversationViewModel
 import com.example.anonymousx.presentation.main.MainScreen
 import com.example.anonymousx.presentation.usersScreen.UserViewModel
 import com.example.anonymousx.presentation.usersScreen.UsersScreen
@@ -87,6 +89,20 @@ fun SetUpnavGraph()
 
 
                 states = state
+            )
+        }
+
+
+
+
+        composable<GroupConversationScreen> { backStackEntry ->
+            val args = backStackEntry.toRoute<GroupConversationScreen>()
+            val viewModel: GroupConversationViewModel = koinViewModel()
+            GroupConversationScreenn(
+                navController = navController,
+                groupId = args.groupId,
+                senderId = args.senderId,
+                viewModel = viewModel
             )
         }
 
