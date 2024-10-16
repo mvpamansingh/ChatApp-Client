@@ -1,5 +1,8 @@
 package com.example.anonymousx.domain.repository
 
+import com.example.anonymousx.domain.model.IndividualGroup
+import com.example.anonymousx.domain.model.ReceivedGroupMessage
+import com.example.anonymousx.domain.model.SentGroupMessage
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.presentation.chatScreen.Message
 import kotlinx.coroutines.flow.Flow
@@ -17,4 +20,11 @@ interface ChatsRepository {
 
     suspend fun sendMessage(message: Message)
     suspend fun getMessages(chatRoomId:String):Flow<List<Message>>
+
+    //Groups
+
+    suspend fun getGroups():Flow<List<IndividualGroup>>
+    suspend fun getGroupMessage(groupId:String):Flow<List<ReceivedGroupMessage>>
+
+    suspend fun sendGroupMessage(sentGroupMessage: SentGroupMessage)
 }

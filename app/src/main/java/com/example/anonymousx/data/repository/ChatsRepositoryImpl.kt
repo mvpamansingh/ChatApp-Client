@@ -2,6 +2,9 @@ package com.example.anonymousx.data.repository
 
 import android.util.Log
 import com.example.anonymousx.data.remote.ChatApi
+import com.example.anonymousx.domain.model.IndividualGroup
+import com.example.anonymousx.domain.model.ReceivedGroupMessage
+import com.example.anonymousx.domain.model.SentGroupMessage
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.domain.repository.ChatsRepository
 import com.example.anonymousx.presentation.chatScreen.Message
@@ -37,5 +40,24 @@ class ChatsRepositoryImpl(
         {
             Log.d("Exception", e.message.toString())
         }
+    }
+
+    override suspend fun getGroups(): Flow<List<IndividualGroup>> = flow {
+        emit(chatApi.getGrouups().body()!!)
+    }
+
+    override suspend fun getGroupMessage(groupId:String): Flow<List<ReceivedGroupMessage>> = flow {
+
+        try {
+            emit(chatApi.getGroupMessage(groupId).body()!!)
+        }
+        catch(e : Exception){
+            Log.d("Exception", e.message.toString())
+        }
+    }
+
+    override suspend fun sendGroupMessage(sentGroupMessage: SentGroupMessage) {
+
+        chatApi.sendGroupMessage(sentGroupMessage)
     }
 }
