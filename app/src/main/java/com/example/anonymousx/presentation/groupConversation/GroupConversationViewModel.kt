@@ -3,6 +3,7 @@ package com.example.anonymousx.presentation.groupConversation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.anonymousx.domain.model.SentGroupMessage
 import com.example.anonymousx.domain.repository.ChatsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,8 +17,7 @@ class GroupConversationViewModel(
 ) : ViewModel(),KoinComponent {
 
     private val chatsRepository: ChatsRepository by inject()
-//    private val _state = MutableStateFlow(GroupConversationState())
-//    val state = _state.asStateFlow()
+
 //
 //    fun onEvent(event: GroupConversationEvents) {
 //        when (event) {
@@ -26,18 +26,8 @@ class GroupConversationViewModel(
 //            is GroupConversationEvents.SendMessage -> TODO()
 //        }
 //    }
-//
-//    private fun fetchGroupMessages(groupId: String) {
-//        viewModelScope.launch {
-//            chatsRepository.getGroupMessage(groupId).collect { messages ->
-//                _state.update { it.copy(conversationList = messages) }
-//            }
-//        }
-//    }
-//
-//    fun sendGroupMessage(groupId: String, senderId: String, message: String) {
-//
-//    }
+
+
 private val _state = MutableStateFlow(GroupConversationState())
     val state = _state.asStateFlow()
 
@@ -49,8 +39,12 @@ private val _state = MutableStateFlow(GroupConversationState())
         }
     }
 
-    fun sendGroupMessage(groupId: String, senderId: String, message: String) {
+    fun sendGroupMessage(sentGroupMessage: SentGroupMessage) {
         // Implement sending group message logic here
         // You might need to add a new method to your ChatsRepository
+        viewModelScope.launch {
+            chatsRepository.sendGroupMessage(sentGroupMessage)
+        }
+
     }
 }

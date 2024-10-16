@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.anonymousx.R
+import com.example.anonymousx.domain.model.SentGroupMessage
 import com.example.anonymousx.presentation.usersScreen.components.UserAppBar
 
 @Composable
@@ -56,7 +57,12 @@ fun GroupConversationScreenn(
         }
 
         GroupMessageInputField { message ->
-            viewModel.sendGroupMessage(groupId, senderId, message)
+            val sendm = SentGroupMessage(
+                groupChatId = groupId,
+                senderId = senderId,
+                message = message
+            )
+            viewModel.sendGroupMessage(sendm)
         }
     }
 }
