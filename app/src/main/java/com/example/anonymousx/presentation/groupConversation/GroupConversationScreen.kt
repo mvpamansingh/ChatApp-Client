@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -30,7 +31,13 @@ fun GroupConversationScreenn(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(key1 = groupId) {
+        viewModel.joinGroup(groupId)
         viewModel.getGroupMessages(groupId)
+    }
+    DisposableEffect(key1 = Unit) {
+        onDispose {
+            viewModel.leaveGroup()
+        }
     }
 
     Column(
@@ -48,7 +55,7 @@ fun GroupConversationScreenn(
                 .weight(1f),
             reverseLayout = false
         ) {
-            items(state.conversationList) { message ->
+            items(state.conversationList.reversed()) { message ->
                 GroupMessageBox(
                     message = message,
                     isCurrentUser = message.senderId == senderId
