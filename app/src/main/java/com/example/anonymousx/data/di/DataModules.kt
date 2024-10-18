@@ -12,7 +12,7 @@ fun provideChatApi():ChatApi{
 
 
     return Retrofit.Builder()
-        .baseUrl("http://192.168.1.3:3000")
+        .baseUrl("http://192.168.97.20:3000")
         .addConverterFactory(GsonConverterFactory.create()).build().create(ChatApi::class.java)
 }
 

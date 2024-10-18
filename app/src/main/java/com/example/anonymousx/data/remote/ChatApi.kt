@@ -44,4 +44,7 @@ interface ChatApi {
 
     @POST("save-group-message")
     suspend fun sendGroupMessage(@Body sentGroupMessage: SentGroupMessage)
+
+    @POST("create-group")
+    suspend fun  createNewGroup(@Body  individualGroup: IndividualGroup)
 }

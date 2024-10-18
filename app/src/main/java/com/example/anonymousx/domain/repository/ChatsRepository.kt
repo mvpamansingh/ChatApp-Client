@@ -27,4 +27,6 @@ interface ChatsRepository {
     suspend fun getGroupMessage(groupId:String):Flow<List<ReceivedGroupMessage>>
 
     suspend fun sendGroupMessage(sentGroupMessage: SentGroupMessage)
+
+    suspend fun createNewGroup(individualGroup: IndividualGroup)
 }

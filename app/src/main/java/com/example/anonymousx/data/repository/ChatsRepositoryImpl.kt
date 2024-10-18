@@ -60,4 +60,9 @@ class ChatsRepositoryImpl(
 
         chatApi.sendGroupMessage(sentGroupMessage)
     }
+
+    override suspend fun createNewGroup(individualGroup: IndividualGroup) {
+
+            chatApi.createNewGroup(individualGroup)
+        }
 }
