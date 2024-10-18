@@ -16,7 +16,7 @@ class ChatViewModel:ViewModel(), KoinComponent {
 
 private val chatsRepository :ChatsRepository by inject()
 
-    private var socket : Socket = IO.socket("http://192.168.1.3:3000/")
+    private var socket : Socket = IO.socket("http://192.168.97.20:3000/")
 
     init {
         socket.connect()

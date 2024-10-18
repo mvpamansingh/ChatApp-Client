@@ -36,6 +36,21 @@ class GroupsScreenViewModel(): ViewModel(),KoinComponent {
                 }
 
             }
+
+            is GroupsScreenEvent.CreateNewGroup ->{
+
+                viewModelScope.launch {
+                    chatsRepository.createNewGroup( individualGroup = event.individualGroup)
+                    //
+                    chatsRepository.getGroups().collect{groups->
+                        _state.value=state.value.copy(
+                            groupsList = groups
+                        )
+                    }
+
+
+                }
+            }
         }
     }
 

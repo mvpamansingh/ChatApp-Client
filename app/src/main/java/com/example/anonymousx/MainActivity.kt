@@ -19,6 +19,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.anonymousx.presentation.navigation.SetUpnavGraph
+import com.example.anonymousx.presentation.settingScreen.AboutScreen
+import com.example.anonymousx.presentation.settingScreen.ContactScreen
 import com.example.anonymousx.ui.theme.AnonymousXTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,9 +33,11 @@ class MainActivity : ComponentActivity() {
             AnonymousXTheme {
                 Box(modifier = Modifier
                     .fillMaxSize()
-                    .background(color = colorResource(id = R.color.purple_200)))
+                    .background(color = colorResource(id = R.color.white)))
                 {
                     SetUpnavGraph()
+                   // AboutScreen()
+                 //   ContactScreen()
                 }
 
             }
