@@ -34,7 +34,7 @@ class AddUserViewModel: ViewModel() , KoinComponent{
 
     private suspend fun addUser(username: String) {
 
-        val users = Users(username = username)
+        val users = Users(username = username, password = "s", email = "df")
         chatRepository.addUser(users).collect{status->
 
             if(status==201){
@@ -48,3 +48,5 @@ class AddUserViewModel: ViewModel() , KoinComponent{
         }
     }
 }
+
+// file is no longer in use

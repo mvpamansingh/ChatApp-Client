@@ -34,7 +34,7 @@ class GroupConversationViewModel(
     }
 
     private fun setupSocket() {
-        socket = IO.socket("http://192.168.97.20:3000/") // Replace with your server URL
+        socket = IO.socket("http://192.168.1.5:3000/") // Replace with your server URL
         socket.connect()
 
         socket.on("newGroupMessage") { args ->
