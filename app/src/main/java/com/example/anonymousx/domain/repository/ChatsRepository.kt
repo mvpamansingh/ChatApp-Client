@@ -2,7 +2,9 @@ package com.example.anonymousx.domain.repository
 
 import com.example.anonymousx.domain.model.IndividualGroup
 import com.example.anonymousx.domain.model.ReceivedGroupMessage
+import com.example.anonymousx.domain.model.ReceivedUserInfo
 import com.example.anonymousx.domain.model.SentGroupMessage
+import com.example.anonymousx.domain.model.SignUpSigIn
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.presentation.chatScreen.Message
 import kotlinx.coroutines.flow.Flow
@@ -29,4 +31,8 @@ interface ChatsRepository {
     suspend fun sendGroupMessage(sentGroupMessage: SentGroupMessage)
 
     suspend fun createNewGroup(individualGroup: IndividualGroup)
+
+    suspend fun signIn(signUpSigIn: SignUpSigIn):Flow<ReceivedUserInfo>
+
+    suspend fun signUp(signUpSigIn: SignUpSigIn)
 }

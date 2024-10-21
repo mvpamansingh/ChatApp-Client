@@ -2,7 +2,9 @@ package com.example.anonymousx.data.remote
 
 import com.example.anonymousx.domain.model.IndividualGroup
 import com.example.anonymousx.domain.model.ReceivedGroupMessage
+import com.example.anonymousx.domain.model.ReceivedUserInfo
 import com.example.anonymousx.domain.model.SentGroupMessage
+import com.example.anonymousx.domain.model.SignUpSigIn
 import com.example.anonymousx.domain.model.Users
 import com.example.anonymousx.presentation.chatScreen.Message
 import retrofit2.Response
@@ -47,4 +49,10 @@ interface ChatApi {
 
     @POST("create-group")
     suspend fun  createNewGroup(@Body  individualGroup: IndividualGroup)
+
+    @POST("signIn")
+    suspend fun signIn(@Body signUpSigIn: SignUpSigIn):Response<ReceivedUserInfo>
+
+    @POST("signUp")
+    suspend fun signUp(@Body signUpSigIn: SignUpSigIn)
 }

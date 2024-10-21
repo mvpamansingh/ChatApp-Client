@@ -95,8 +95,8 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:3.2.0")
 
 
-
-
+    // preferences datastore
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     implementation ("io.socket:socket.io-client:2.0.0")
 }
